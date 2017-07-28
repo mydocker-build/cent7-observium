@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  observium:
+    image: cent-observium
+    container_name: observium
+    ports:
+      - 8083:80
+    environment:
+      - DB_OBSERVIUM_HOST
+      - DB_OBSERVIUM_USER
+      - DB_OBSERVIUM_PASSWORD
+      - DB_OBSERVIUM_NAME
+    volumes:
+      - /srv/data/observium/rrd:/srv/observium/rrd

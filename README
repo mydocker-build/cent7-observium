@@ -1,0 +1,22 @@
+## Build observium on CentOS 7 ##
+1. Prepare database and user for Observium
+  CREATE DATABASE db_observium DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+  GRANT ALL PRIVILEGES ON db_observium.* TO 'user_observium'@'%' IDENTIFIED BY '<observium db password>';
+  FLUSH PRIVILEGES;
+
+2. Configure .env file in project directory
+
+cat > .env <<'EOF'
+DB_OBSERVIUM_HOST=192.168.250.61
+DB_OBSERVIUM_USER=user_observium
+DB_OBSERVIUM_PASSWORD=P@ssw0rd#1
+DB_OBSERVIUM_NAME=db_observium
+EOF
+
+3. Build observium image
+docker build -t cent-observium .
+
+4. Start with docker-compose
+docker-compose up -d
+
+5. There are some utilities in "/srv/docker/observium/tools/" to add user, device, delete and rename ...
