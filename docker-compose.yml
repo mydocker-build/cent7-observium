@@ -1,14 +1,18 @@
 version: '3.1'
 services:
   observium:
-    image: cent-observium
-    container_name: observium
+    image: "cent7-observium:latest"
+    restart: always
+    container_name: observium.sca-domain.com
+    hostname: observium
+    domainname: sca-domain.com
+    network_mode: bridge
     ports:
-      - 8083:80
+      - 8082:80
     environment:
-      - DB_OBSERVIUM_HOST
-      - DB_OBSERVIUM_USER
-      - DB_OBSERVIUM_PASSWORD
-      - DB_OBSERVIUM_NAME
+      - DB_OBSERVIUM_HOST=192.168.99.252
+      - DB_OBSERVIUM_USER=user_observium
+      - DB_OBSERVIUM_PASSWORD=RH5c1MIN=U
+      - DB_OBSERVIUM_NAME=db_observium
     volumes:
-      - /srv/data/observium/rrd:/srv/observium/rrd
+      - /srv/docker_data/observium.sca-domain.com:/srv/observium

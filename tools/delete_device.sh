@@ -1,3 +1,4 @@
 #!/bin/bash
 read -p "Enter hostname/IP: " host
-docker exec -it observium /srv/observium/delete_device.php $host rrd
+host=observium.sca-domain.com
+docker exec -it $host /srv/observium/delete_device.php $host rrd
